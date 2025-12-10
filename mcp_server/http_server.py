@@ -14,6 +14,7 @@ from datas import (
     UserId,
 )
 from fastmcp import FastMCP
+from fastmcp.prompts.prompt import PromptMessage, TextContent
 
 
 mcp = FastMCP(name="HTTP Server", instructions="Use of LLM not implemented yet")
@@ -61,6 +62,17 @@ async def get_pickup_info(pickup_id: PickupId) -> Pickup | None:
 async def get_active_shipment() -> dict[ShipmentId, Shipment]:
     await asyncio.sleep(random.random())
     return {k: v for k, v in SHIPMENT_TABLE.items() if v["status"].value <= ShipmentStatus.AWAITING_WITHDRAW.value}
+
+
+@mcp.prompt(
+    name="Get information about shipments a user is waiting for",
+    description="Generate a user message asking about shipments he or she is waiting for, using email as key",
+    tags={"shipment", "list"},
+)
+async def ask_about_my_shipments(email: str) -> PromptMessage:
+    await asyncio.sleep(random.random())
+    content = f"I am {email}, tell me about shipments I am waiting for."
+    return PromptMessage(role="user", content=TextContent(type="text", text=content))
 
 
 if __name__ == "__main__":

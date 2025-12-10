@@ -18,6 +18,11 @@ async def main():
         for resource in resources:
             print(f"{resource.name}: {resource.description} (URI: {resource.uri})")
 
+        prompts = await client.list_prompts()
+        print("\nYour server has the following prompts:")
+        for prompt in prompts:
+            print(f"{prompt.name}: {prompt.description}")
+
 
 if __name__ == "__main__":
     asyncio.run(main())
