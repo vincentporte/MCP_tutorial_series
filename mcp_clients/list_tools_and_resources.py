@@ -8,6 +8,11 @@ client = Client("http://localhost:8000/mcp")
 
 async def main():
     async with client:
+        tools = await client.list_tools()
+        print("\nYour server has the following tools:")
+        for tool in tools:
+            print(f"{tool.name}: {tool.description}")
+
         resources = await client.list_resources()
         print("\nYour server has the following resources:")
         for resource in resources:
