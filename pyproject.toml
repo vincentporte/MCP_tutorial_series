@@ -3,14 +3,14 @@ name = "tutorial-series"
 version = "0.1.0"
 description = "Code for a serie of tutorials on using MCP server in python, with privacy-by-design approach"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.12"
 dependencies = [
+    "fastmcp>=2.13.3",
     "langchain-ollama>=0.3.10",
-    "mcp>=1.16.0",
     "ollama>=0.6.0",
-    "pydantic>=2.12.5",
-    "rich>=14.2.0", # display, pretty print, logger
-    "typer>=0.20.0", # command line
+    #"pydantic>=2.12.5",
+    #"rich>=14.2.0", # display, pretty print, logger
+    #"typer>=0.20.0", # command line
 ]
 
 [dependency-groups]
